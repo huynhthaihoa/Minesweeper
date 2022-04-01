@@ -29,87 +29,64 @@ namespace Minesweeper
         /// </summary>
         private void InitializeComponent()
         {
-            this.panelCell = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbScore = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.components = new System.ComponentModel.Container();
+            this.cellPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.lbTime = new System.Windows.Forms.Label();
+            this.tbTime = new System.Windows.Forms.TextBox();
             this.lbStatus = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cbMode = new System.Windows.Forms.ComboBox();
             this.btnNew = new System.Windows.Forms.Button();
+            this.lbState = new System.Windows.Forms.Label();
+            this.timerPlay = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // panelCell
+            // cellPanel
             // 
-            this.panelCell.ColumnCount = 2;
-            this.panelCell.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.panelCell.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.panelCell.Location = new System.Drawing.Point(21, 120);
-            this.panelCell.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.panelCell.Name = "panelCell";
-            this.panelCell.RowCount = 2;
-            this.panelCell.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.panelCell.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.panelCell.Size = new System.Drawing.Size(1259, 960);
-            this.panelCell.TabIndex = 0;
+            this.cellPanel.ColumnCount = 2;
+            this.cellPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.cellPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.cellPanel.Location = new System.Drawing.Point(13, 75);
+            this.cellPanel.Name = "cellPanel";
+            this.cellPanel.RowCount = 2;
+            this.cellPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.cellPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.cellPanel.Size = new System.Drawing.Size(775, 600);
+            this.cellPanel.TabIndex = 0;
             // 
-            // label1
+            // lbTime
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(20, 40);
-            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(106, 32);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Score";
+            this.lbTime.AutoSize = true;
+            this.lbTime.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbTime.Location = new System.Drawing.Point(12, 25);
+            this.lbTime.Name = "lbTime";
+            this.lbTime.Size = new System.Drawing.Size(54, 20);
+            this.lbTime.TabIndex = 1;
+            this.lbTime.Text = "Time";
             // 
-            // tbScore
+            // tbTime
             // 
-            this.tbScore.Enabled = false;
-            this.tbScore.Location = new System.Drawing.Point(135, 40);
-            this.tbScore.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.tbScore.Name = "tbScore";
-            this.tbScore.Size = new System.Drawing.Size(241, 35);
-            this.tbScore.TabIndex = 2;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(904, 40);
-            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 32);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Time";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(1001, 40);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(241, 35);
-            this.textBox1.TabIndex = 4;
+            this.tbTime.Enabled = false;
+            this.tbTime.Location = new System.Drawing.Point(83, 25);
+            this.tbTime.Name = "tbTime";
+            this.tbTime.Size = new System.Drawing.Size(150, 25);
+            this.tbTime.TabIndex = 2;
             // 
             // lbStatus
             // 
             this.lbStatus.AutoSize = true;
-            this.lbStatus.Location = new System.Drawing.Point(630, 46);
-            this.lbStatus.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lbStatus.Location = new System.Drawing.Point(388, 29);
             this.lbStatus.Name = "lbStatus";
-            this.lbStatus.Size = new System.Drawing.Size(0, 24);
+            this.lbStatus.Size = new System.Drawing.Size(0, 15);
             this.lbStatus.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.Location = new System.Drawing.Point(20, 1120);
-            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label3.Location = new System.Drawing.Point(12, 700);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(101, 32);
+            this.label3.Size = new System.Drawing.Size(60, 20);
             this.label3.TabIndex = 6;
             this.label3.Text = "Mode";
             // 
@@ -120,42 +97,52 @@ namespace Minesweeper
             "9x9",
             "16x16",
             "30x16"});
-            this.cbMode.Location = new System.Drawing.Point(135, 1120);
-            this.cbMode.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cbMode.Location = new System.Drawing.Point(83, 700);
             this.cbMode.Name = "cbMode";
-            this.cbMode.Size = new System.Drawing.Size(241, 32);
+            this.cbMode.Size = new System.Drawing.Size(150, 23);
             this.cbMode.TabIndex = 7;
             this.cbMode.SelectedIndexChanged += new System.EventHandler(this.cbMode_SelectedIndexChanged);
             // 
             // btnNew
             // 
             this.btnNew.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnNew.Location = new System.Drawing.Point(562, 1110);
-            this.btnNew.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnNew.Location = new System.Drawing.Point(346, 694);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(187, 53);
+            this.btnNew.Size = new System.Drawing.Size(115, 33);
             this.btnNew.TabIndex = 8;
             this.btnNew.Text = "New game";
             this.btnNew.UseVisualStyleBackColor = true;
-            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            this.btnNew.Click += new System.EventHandler(this.clickNewButton);
+            // 
+            // lbState
+            // 
+            this.lbState.AutoSize = true;
+            this.lbState.Font = new System.Drawing.Font("Goudy Stout", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbState.Location = new System.Drawing.Point(515, 18);
+            this.lbState.Name = "lbState";
+            this.lbState.Size = new System.Drawing.Size(0, 32);
+            this.lbState.TabIndex = 9;
+            // 
+            // timerPlay
+            // 
+            this.timerPlay.Interval = 1000;
+            this.timerPlay.Tick += new System.EventHandler(this.timerPlay_Tick);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1300, 1190);
+            this.ClientSize = new System.Drawing.Size(800, 659);
+            this.Controls.Add(this.lbState);
             this.Controls.Add(this.btnNew);
             this.Controls.Add(this.cbMode);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lbStatus);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.tbScore);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.panelCell);
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Controls.Add(this.tbTime);
+            this.Controls.Add(this.lbTime);
+            this.Controls.Add(this.cellPanel);
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
@@ -166,15 +153,15 @@ namespace Minesweeper
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel panelCell;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbScore;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TableLayoutPanel cellPanel;
+        private System.Windows.Forms.Label lbTime;
+        private System.Windows.Forms.TextBox tbTime;
         private System.Windows.Forms.Label lbStatus;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbMode;
         private System.Windows.Forms.Button btnNew;
+        private System.Windows.Forms.Label lbState;
+        private System.Windows.Forms.Timer timerPlay;
     }
 }
 

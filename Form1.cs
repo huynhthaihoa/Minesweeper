@@ -19,6 +19,9 @@ namespace Minesweeper
         //number of mines
         int mMineCount;
 
+        //list of mined cells
+        List<Point> mMinedCells;
+
         //matrix of cell button
         CellButton[,] mCellButtons;
 
@@ -28,49 +31,163 @@ namespace Minesweeper
         //check if any cell is already clicked
         bool mFlag;
 
+        //check if game is finished
+        bool mEndGame;
+
+        //number of uncovered cells (excluding mined cells)
+        int mUncoveredCellCnt;
+
         public Form1()
         {
             InitializeComponent();
             cbMode.SelectedIndex = 0;
-            btnNew_Click(null, null);
+            clickNewButton(null, null);
+        }
+        private List<Point> getNeighborPoints(int row, int col, bool checkEnable = false)
+        {
+            List<Point> neighborPoints = new List<Point>();
+            if (row > 0)
+            {
+                if (checkEnable == false || mCellButtons[row - 1, col].Enabled == true)
+                    neighborPoints.Add(new Point(row - 1, col));
+                if (col > 0 && (checkEnable == false || mCellButtons[row - 1, col - 1].Enabled == true))
+                    neighborPoints.Add(new Point(row - 1, col - 1));
+                if (col < mColCount - 1 && (checkEnable == false || mCellButtons[row - 1, col + 1].Enabled == true))
+                    neighborPoints.Add(new Point(row - 1, col + 1));
+            }
+            if (col > 0)
+            {
+                if (checkEnable == false || mCellButtons[row, col - 1].Enabled == true)
+                    neighborPoints.Add(new Point(row, col - 1));
+                if (row < mRowCount - 1 && (checkEnable == false || mCellButtons[row + 1, col - 1].Enabled == true))
+                    neighborPoints.Add(new Point(row + 1, col - 1));
+            }
+            if (row < mRowCount - 1)
+            {
+                if (checkEnable == false || mCellButtons[row + 1, col].Enabled == true)
+                    neighborPoints.Add(new Point(row + 1, col));
+                if (col < mColCount - 1 && (checkEnable == false || mCellButtons[row + 1, col + 1].Enabled == true))
+                    neighborPoints.Add(new Point(row + 1, col + 1));
+            }
+            if (col < mColCount - 1 && (checkEnable == false || mCellButtons[row, col + 1].Enabled == true))
+                neighborPoints.Add(new Point(row, col + 1));
+            return neighborPoints;
         }
 
-        private void btnNew_Click(object sender, EventArgs e)
+        private List<Point> initializeMineList()
         {
-            mFlag = false;
+            mMinedCells = new List<Point>();
+            Random rd = new Random();
+            while (mMinedCells.Count < mMineCount)
+            {
+                int seed = rd.Next(0, mCellCount);
+                Point point = new Point(seed / mColCount, seed % mColCount);
+                if (!mMinedCells.Contains(point))
+                    mMinedCells.Add(point);
+            }
+            return mMinedCells;
+        }
 
-            panelCell.Controls.Clear();
-
-            panelCell.RowStyles.Clear();
-            panelCell.ColumnStyles.Clear();
-
-            panelCell.RowCount = mRowCount;
-            panelCell.ColumnCount = mColCount;
-
-            mCellButtons = new CellButton[mRowCount, mColCount];
-            
+        private void initializeCellValues()
+        {
             mCellValues = new int[mRowCount, mColCount];
-            setCellValues();
+
+            initializeMineList();
+
+            //1st pass - set mine into mCellValue matrix
+            foreach (Point point in mMinedCells)
+                mCellValues[point.X, point.Y] = -1;
+
+            //2nd pass - update value for each mine's neighbor
+            for (int i = 0; i < mRowCount; i++)
+            {
+                for (int j = 0; j < mColCount; j++)
+                {
+                    if (mCellValues[i, j] != -1)
+                    {
+                        List<Point> neighborPoints = getNeighborPoints(i, j);
+                        foreach (Point point in neighborPoints)
+                        {
+                            if (mCellValues[point.X, point.Y] == -1)
+                                ++mCellValues[i, j];
+                        }
+                    }
+
+                }
+            }
+        }
+
+        private void initializeCellButtons()
+        {
+            cellPanel.Controls.Clear();
+
+            cellPanel.RowStyles.Clear();
+            cellPanel.ColumnStyles.Clear();
+
+            cellPanel.RowCount = mRowCount;
+            cellPanel.ColumnCount = mColCount;
 
             for (int i = 0; i < mColCount; i++)
             {
-                panelCell.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100 / mColCount));
+                cellPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100 / mColCount));
             }
             for (int i = 0; i < mRowCount; i++)
             {
-                panelCell.RowStyles.Add(new RowStyle(SizeType.Percent, 100 / mColCount));
+                cellPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100 / mColCount));
             }
 
-            for(int i = 0; i < mRowCount; i++)
+            mCellButtons = new CellButton[mRowCount, mColCount];
+
+            for (int i = 0; i < mRowCount; i++)
             {
-                for(int j = 0; j < mColCount; j++)
+                for (int j = 0; j < mColCount; j++)
                 {
                     mCellButtons[i, j] = new CellButton(i, j);
                     mCellButtons[i, j].Click += new EventHandler(clickCellButton);
-                    panelCell.Controls.Add(mCellButtons[i, j], j, i);
+                    cellPanel.Controls.Add(mCellButtons[i, j], j, i);
                 }
             }
+        }
 
+        private void updateRegion(int row, int col, bool updateItself = false)
+        {
+            List<Point> neighborPoints = getNeighborPoints(row, col);
+            int mineCount = 0;
+            foreach (Point point in neighborPoints)
+            {
+                if (mCellValues[point.X, point.Y] != -1)
+                {
+                    if (updateItself == true)
+                        --mCellValues[point.X, point.Y];
+                    else
+                        ++mCellValues[point.X, point.Y];
+
+                }
+                else
+                    ++mineCount;
+            }
+            if (updateItself == true)
+            {
+                mCellValues[row, col] = mineCount;
+                mMinedCells.Remove(new Point(row, col));
+            }
+            else
+            {
+                mCellValues[row, col] = -1;
+                mMinedCells.Add(new Point(row, col));
+            }
+        }
+
+        private void clickNewButton(object sender, EventArgs e)
+        {
+            initializeCellValues();
+            initializeCellButtons();
+            lbState.Text = "";
+            mFlag = false;
+            mUncoveredCellCnt = 0;
+            mEndGame = false;
+            tbTime.Text = "0";
+            timerPlay.Start();
         }
 
         private void clickCellButton(object sender, EventArgs e)
@@ -78,27 +195,45 @@ namespace Minesweeper
             int r = ((CellButton)sender).Row;
             int c = ((CellButton)sender).Col;
             mCellButtons[r, c].Enabled = false;
-            
+
+            if (mFlag == false)
+            {
+                if (mCellValues[r, c] == -1) //choose the mined cell at the first click
+                {
+                    Random rd = new Random();
+
+                    //find a new location to replace this mined cell
+                    while(true)
+                    {
+                        int seed = rd.Next(0, mCellCount);
+                        Point point = new Point(seed / mColCount, seed % mColCount);
+                        if(mCellValues[point.X, point.Y] != -1) //(point.X, point.Y) is a new mined cell
+                        {
+                            updateRegion(r, c, true); //update the region around the old mined cell
+                            updateRegion(point.X, point.Y); //update the region around the new mined cell
+                            break;
+                        }
+                    }
+                }
+                mFlag = true;
+            }
+
             if (mCellValues[r, c] != 0)
             {
                 mCellButtons[r, c].Text = mCellValues[r, c].ToString();
                 
-                if(mCellValues[r, c] == -1)
+                if(mCellValues[r, c] == -1) //click mined cell - game over!
                 {
-                    if(mFlag == true)
+                    mEndGame = true;
+                    timerPlay.Stop();
+                    lbState.Text = "Game over!";
+                    for (int i = 0; i < mRowCount; i++)
                     {
-                        for (int i = 0; i < mRowCount; i++)
+                        for (int j = 0; j < mColCount; j++)
                         {
-                            for (int j = 0; j < mColCount; j++)
-                            {
-                                if (mCellButtons[i, j].Enabled == true)
-                                    clickCellButton(mCellButtons[i, j], e);
-                            }
+                            if (mCellButtons[i, j].Enabled == true)
+                                clickCellButton(mCellButtons[i, j], e);
                         }
-                    }
-                    else
-                    {
-                        //update the position of the clicked mine
                     }
                 }
             }
@@ -107,13 +242,27 @@ namespace Minesweeper
                 List<Point> neighborPoints = getNeighborPoints(r, c, true);
                 foreach (Point point in neighborPoints)
                 {
-                    if (mCellValues[point.X, point.Y] != -1)
+                    if (mCellValues[point.X, point.Y] != -1 && mCellButtons[point.X, point.Y].Enabled == true)
                         clickCellButton(mCellButtons[point.X, point.Y], e);
                 }
             }
 
-            if (mFlag == false)
-                mFlag = true;
+            if (!mEndGame && mCellValues[r, c] != -1)
+            {
+                ++mUncoveredCellCnt;
+                if(mUncoveredCellCnt == mCellCount - mMineCount) //uncover every unmined cell - win game!
+                {
+                    mEndGame = true;
+                    timerPlay.Stop();
+                    lbState.Text = "Victory!";
+                    foreach (Point point in mMinedCells)
+                    {
+                        mCellButtons[point.X, point.Y].Enabled = false;
+                        mCellButtons[point.X, point.Y].BackColor = Color.Red;
+                    }
+                }
+            }
+
         }
 
         private void cbMode_SelectedIndexChanged(object sender, EventArgs e)
@@ -146,76 +295,10 @@ namespace Minesweeper
             mCellCount = mRowCount * mColCount;
         }
 
-        private List<Point> getMineList()
+        private void timerPlay_Tick(object sender, EventArgs e)
         {
-            List<Point> mineList = new List<Point>();
-            Random rd = new Random();
-            while (mineList.Count < mMineCount)
-            {
-                int seed = rd.Next(0, mCellCount);
-                Point point = new Point(seed / mColCount, seed % mColCount);
-                if (!mineList.Contains(point))
-                    mineList.Add(point);
-            }
-            return mineList;
-        }
-
-        private List<Point> getNeighborPoints(int row, int col, bool checkEnable = false)
-        {
-            List<Point> neighborPoints = new List<Point>();
-            if (row > 0)
-            {
-                if (checkEnable == false || mCellButtons[row - 1, col].Enabled == true)
-                    neighborPoints.Add(new Point(row - 1, col));
-                if (col > 0 && (checkEnable == false || mCellButtons[row - 1, col - 1].Enabled == true))
-                    neighborPoints.Add(new Point(row - 1, col - 1));
-                if (col < mColCount - 1 && (checkEnable == false || mCellButtons[row - 1, col + 1].Enabled == true))
-                    neighborPoints.Add(new Point(row - 1, col + 1));
-            }
-            if (col > 0)
-            {
-                if (checkEnable == false || mCellButtons[row, col - 1].Enabled == true)
-                    neighborPoints.Add(new Point(row, col - 1));
-                if (row < mRowCount - 1 && (checkEnable == false || mCellButtons[row + 1, col - 1].Enabled == true))
-                    neighborPoints.Add(new Point(row + 1, col - 1));
-            }
-            if (row < mRowCount - 1)
-            {
-                if (checkEnable == false || mCellButtons[row + 1, col].Enabled == true)
-                    neighborPoints.Add(new Point(row + 1, col));
-                if (col < mColCount - 1 && (checkEnable == false || mCellButtons[row + 1, col + 1].Enabled == true))
-                    neighborPoints.Add(new Point(row + 1, col + 1));
-            }
-            if (col < mColCount - 1 && (checkEnable == false || mCellButtons[row, col + 1].Enabled == true))
-                neighborPoints.Add(new Point(row, col + 1));
-            return neighborPoints;
-        }
-
-        private void setCellValues()
-        {
-            List<Point> mineList = getMineList();
-
-            //1st pass - set mine into mCellValue matrix
-            foreach (Point point in mineList)
-                mCellValues[point.X, point.Y] = -1;
-
-            //2nd pass - update value for each mine's neighbor
-            for (int i = 0; i < mRowCount; i++)
-            {
-                for (int j = 0; j < mColCount; j++)
-                {
-                    if (mCellValues[i, j] != -1)
-                    {
-                        List<Point> neighborPoints = getNeighborPoints(i, j);
-                        foreach (Point point in neighborPoints)
-                        {
-                            if (mCellValues[point.X, point.Y] == -1)
-                                ++mCellValues[i, j];
-                        }
-                    }
-
-                }
-            }
+            tbTime.Text = (int.Parse(tbTime.Text) + 1).ToString();
+            tbTime.Refresh();
         }
     }
 }
