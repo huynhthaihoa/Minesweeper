@@ -1,7 +1,7 @@
 # Minesweeper
 C# clone of the classic Minesweeper
 
-*Last updated: 04/01/2022 - 6:09PM (KST)*
+*Last updated: 04/01/2022 - 6:11PM (KST)*
 ## Installation
 Build & run with Microsoft Visual Studio 2019 using .NET Framework 4.7.2
 ## Done
@@ -17,5 +17,6 @@ Build & run with Microsoft Visual Studio 2019 using .NET Framework 4.7.2
  - Set timer and score
  - Add trigger to ensure the first clicked cell will never be a mined cell
  - Improve GUI (?)
+ - Add high score table
 
 
