@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Minesweeper
@@ -30,6 +31,7 @@ namespace Minesweeper
         {
             mRow = row;
             mCol = col;
+            Font = new Font("Arial", 12, FontStyle.Bold);
             //mVal = 0;
             Dock = DockStyle.Fill;
         }
