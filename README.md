@@ -2,6 +2,8 @@
 C# clone of the classic Minesweeper
 
 *Last updated: 04/01/2022 - 6:05PM (KST)*
+## Installation
+Build & run with Microsoft Visual Studio 2019 using .NET Framework 4.7.2
 ## Done
 - Generate new game with 3 modes:
   - 9x9 field with 10 mines (Easy)
