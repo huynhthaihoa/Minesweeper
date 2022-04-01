@@ -25,14 +25,20 @@ namespace Minesweeper
         //matrix of cell value
         int[,] mCellValues;
 
+        //check if any cell is already clicked
+        bool mFlag;
+
         public Form1()
         {
             InitializeComponent();
             cbMode.SelectedIndex = 0;
+            btnNew_Click(null, null);
         }
 
         private void btnNew_Click(object sender, EventArgs e)
         {
+            mFlag = false;
+
             panelCell.Controls.Clear();
 
             panelCell.RowStyles.Clear();
@@ -72,19 +78,27 @@ namespace Minesweeper
             int r = ((CellButton)sender).Row;
             int c = ((CellButton)sender).Col;
             mCellButtons[r, c].Enabled = false;
+            
             if (mCellValues[r, c] != 0)
             {
                 mCellButtons[r, c].Text = mCellValues[r, c].ToString();
                 
                 if(mCellValues[r, c] == -1)
                 {
-                    for (int i = 0; i < mRowCount; i++)
+                    if(mFlag == true)
                     {
-                        for (int j = 0; j < mColCount; j++)
+                        for (int i = 0; i < mRowCount; i++)
                         {
-                            if (mCellButtons[i, j].Enabled == true)
-                                clickCellButton(mCellButtons[i, j], e);
+                            for (int j = 0; j < mColCount; j++)
+                            {
+                                if (mCellButtons[i, j].Enabled == true)
+                                    clickCellButton(mCellButtons[i, j], e);
+                            }
                         }
+                    }
+                    else
+                    {
+                        //update the position of the clicked mine
                     }
                 }
             }
@@ -97,6 +111,9 @@ namespace Minesweeper
                         clickCellButton(mCellButtons[point.X, point.Y], e);
                 }
             }
+
+            if (mFlag == false)
+                mFlag = true;
         }
 
         private void cbMode_SelectedIndexChanged(object sender, EventArgs e)
