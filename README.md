@@ -14,7 +14,6 @@ Build & run with Microsoft Visual Studio 2019 using .NET Framework 4.7.2 (no add
   - Display a positive number which indicates the number of mines diagonally and/or adjacent to it
   - Display a blank cell and all adjacent non-mined cells will automatically be uncovered 
 - Ensure the first clicked cell will never be a mined cell
-- Set "raw" timer
 - Finish game:
   - When the mined cell is clicked (all cells will be uncovered) -> "Game over!"
   - When every unmined cell is uncovered (all mined cells will become red) -> "Victory!"
