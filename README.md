@@ -1,10 +1,14 @@
 # Minesweeper
 C# clone of the classic Minesweeper
 
-*Last updated: 04/02/2022 - 07:34PM (KST)*
+*Last updated: 04/02/2022 - 09:30PM (KST)*
 ## Installation
 - Build & run with Microsoft Visual Studio 2019 using .NET Framework 4.7.2 (no additional dependencies)
 - Run the program directly at Demo/Minesweeper.exe
+## Demo 
+![<img src="./Demo/Victory.png" width="30" height="30" alt="Victory"/>](./Demo/Victory.png)
+
+![<img src="./Demo/GameOver.png" width="30" height="30" alt="Game over"/>](./Demo/GameOver.png)
 ## Done
 - Generate new game with 3 modes:
   - 9x9 field with 10 mines (Easy) - default mode
