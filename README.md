@@ -1,7 +1,7 @@
 # Minesweeper
 C# clone of the classic Minesweeper
 
-*Last updated: 04/02/2022 - 12:30PM (KST)*
+*Last updated: 04/02/2022 - 07:34PM (KST)*
 ## Installation
 Build & run with Microsoft Visual Studio 2019 using .NET Framework 4.7.2 (no additional dependencies)
 ## Done
@@ -24,5 +24,7 @@ Build & run with Microsoft Visual Studio 2019 using .NET Framework 4.7.2 (no add
  - Imrove performance
  - Improve GUI (?)
  - Add high score table
+ ## Credit
+ Mine icon was downloaded from [pngwing](https://www.pngwing.com/en/free-png-cbukd)
 
 
