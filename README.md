@@ -1,9 +1,9 @@
 # Minesweeper
 C# clone of the classic Minesweeper
 
-*Last updated: 04/02/2022 - 0:05AM (KST)*
+*Last updated: 04/02/2022 - 12:30PM (KST)*
 ## Installation
-Build & run with Microsoft Visual Studio 2019 using .NET Framework 4.7.2
+Build & run with Microsoft Visual Studio 2019 using .NET Framework 4.7.2 (no additional dependencies)
 ## Done
 - Generate new game with 3 modes:
   - 9x9 field with 10 mines (Easy) - default mode
@@ -18,8 +18,9 @@ Build & run with Microsoft Visual Studio 2019 using .NET Framework 4.7.2
 - Finish game:
   - When the mined cell is clicked (all cells will be uncovered) -> "Game over!"
   - When every unmined cell is uncovered (all mined cells will become red) -> "Victory!"
+- Add mined cell icon & program icon
+- Display timer on hh:mm:ss format
  ## To do
- - Update format for timer
  - Find & fix potential bugs
  - Imrove performance
  - Improve GUI (?)
