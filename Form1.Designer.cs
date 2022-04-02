@@ -30,15 +30,16 @@ namespace Minesweeper
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.cellPanel = new System.Windows.Forms.TableLayoutPanel();
             this.lbTime = new System.Windows.Forms.Label();
-            this.tbTime = new System.Windows.Forms.TextBox();
+            this.timeTextbox = new System.Windows.Forms.TextBox();
             this.lbStatus = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.cbMode = new System.Windows.Forms.ComboBox();
+            this.modeCheckbox = new System.Windows.Forms.ComboBox();
             this.btnNew = new System.Windows.Forms.Button();
-            this.lbState = new System.Windows.Forms.Label();
-            this.timerPlay = new System.Windows.Forms.Timer(this.components);
+            this.stateLabel = new System.Windows.Forms.Label();
+            this.playTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // cellPanel
@@ -64,13 +65,13 @@ namespace Minesweeper
             this.lbTime.TabIndex = 1;
             this.lbTime.Text = "Time";
             // 
-            // tbTime
+            // timeTextbox
             // 
-            this.tbTime.Enabled = false;
-            this.tbTime.Location = new System.Drawing.Point(83, 25);
-            this.tbTime.Name = "tbTime";
-            this.tbTime.Size = new System.Drawing.Size(150, 25);
-            this.tbTime.TabIndex = 2;
+            this.timeTextbox.Enabled = false;
+            this.timeTextbox.Location = new System.Drawing.Point(83, 25);
+            this.timeTextbox.Name = "timeTextbox";
+            this.timeTextbox.Size = new System.Drawing.Size(99, 25);
+            this.timeTextbox.TabIndex = 2;
             // 
             // lbStatus
             // 
@@ -90,18 +91,18 @@ namespace Minesweeper
             this.label3.TabIndex = 6;
             this.label3.Text = "Mode";
             // 
-            // cbMode
+            // modeCheckbox
             // 
-            this.cbMode.FormattingEnabled = true;
-            this.cbMode.Items.AddRange(new object[] {
+            this.modeCheckbox.FormattingEnabled = true;
+            this.modeCheckbox.Items.AddRange(new object[] {
             "9x9",
             "16x16",
             "30x16"});
-            this.cbMode.Location = new System.Drawing.Point(83, 700);
-            this.cbMode.Name = "cbMode";
-            this.cbMode.Size = new System.Drawing.Size(150, 23);
-            this.cbMode.TabIndex = 7;
-            this.cbMode.SelectedIndexChanged += new System.EventHandler(this.cbMode_SelectedIndexChanged);
+            this.modeCheckbox.Location = new System.Drawing.Point(83, 700);
+            this.modeCheckbox.Name = "modeCheckbox";
+            this.modeCheckbox.Size = new System.Drawing.Size(150, 23);
+            this.modeCheckbox.TabIndex = 7;
+            this.modeCheckbox.SelectedIndexChanged += new System.EventHandler(this.modeCheckbox_SelectedIndexChanged);
             // 
             // btnNew
             // 
@@ -114,19 +115,19 @@ namespace Minesweeper
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.clickNewButton);
             // 
-            // lbState
+            // stateLabel
             // 
-            this.lbState.AutoSize = true;
-            this.lbState.Font = new System.Drawing.Font("Goudy Stout", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbState.Location = new System.Drawing.Point(515, 18);
-            this.lbState.Name = "lbState";
-            this.lbState.Size = new System.Drawing.Size(0, 32);
-            this.lbState.TabIndex = 9;
+            this.stateLabel.AutoSize = true;
+            this.stateLabel.Font = new System.Drawing.Font("Goudy Stout", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stateLabel.Location = new System.Drawing.Point(515, 18);
+            this.stateLabel.Name = "stateLabel";
+            this.stateLabel.Size = new System.Drawing.Size(0, 32);
+            this.stateLabel.TabIndex = 9;
             // 
-            // timerPlay
+            // playTimer
             // 
-            this.timerPlay.Interval = 1000;
-            this.timerPlay.Tick += new System.EventHandler(this.timerPlay_Tick);
+            this.playTimer.Interval = 1000;
+            this.playTimer.Tick += new System.EventHandler(this.playTimer_Tick);
             // 
             // Form1
             // 
@@ -135,17 +136,18 @@ namespace Minesweeper
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(800, 659);
-            this.Controls.Add(this.lbState);
+            this.Controls.Add(this.stateLabel);
             this.Controls.Add(this.btnNew);
-            this.Controls.Add(this.cbMode);
+            this.Controls.Add(this.modeCheckbox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lbStatus);
-            this.Controls.Add(this.tbTime);
+            this.Controls.Add(this.timeTextbox);
             this.Controls.Add(this.lbTime);
             this.Controls.Add(this.cellPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Minesweeper";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -155,13 +157,13 @@ namespace Minesweeper
 
         private System.Windows.Forms.TableLayoutPanel cellPanel;
         private System.Windows.Forms.Label lbTime;
-        private System.Windows.Forms.TextBox tbTime;
+        private System.Windows.Forms.TextBox timeTextbox;
         private System.Windows.Forms.Label lbStatus;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cbMode;
+        private System.Windows.Forms.ComboBox modeCheckbox;
         private System.Windows.Forms.Button btnNew;
-        private System.Windows.Forms.Label lbState;
-        private System.Windows.Forms.Timer timerPlay;
+        private System.Windows.Forms.Label stateLabel;
+        private System.Windows.Forms.Timer playTimer;
     }
 }
 

@@ -37,10 +37,16 @@ namespace Minesweeper
         //number of uncovered cells (excluding mined cells)
         int mUncoveredCellCnt;
 
+        //time count
+        long mHourCount;
+        int mMinuteCount;
+        int mSecondCount;
+
+
         public Form1()
         {
             InitializeComponent();
-            cbMode.SelectedIndex = 0;
+            modeCheckbox.SelectedIndex = 0;
             clickNewButton(null, null);
         }
         private List<Point> getNeighborPoints(int row, int col, bool checkEnable = false)
@@ -182,12 +188,16 @@ namespace Minesweeper
         {
             initializeCellValues();
             initializeCellButtons();
-            lbState.Text = "";
+            stateLabel.Text = "";
             mFlag = false;
             mUncoveredCellCnt = 0;
             mEndGame = false;
-            tbTime.Text = "0";
-            timerPlay.Start();
+            mHourCount = 0;
+            mMinuteCount = 0;
+            mSecondCount = 0;
+            //mTimeCount = 0;
+            timeTextbox.Text = "00:00:00";
+            playTimer.Start();
         }
 
         private void clickCellButton(object sender, EventArgs e)
@@ -195,7 +205,6 @@ namespace Minesweeper
             int r = ((CellButton)sender).Row;
             int c = ((CellButton)sender).Col;
             mCellButtons[r, c].Enabled = false;
-
             if (mFlag == false)
             {
                 if (mCellValues[r, c] == -1) //choose the mined cell at the first click
@@ -218,25 +227,10 @@ namespace Minesweeper
                 mFlag = true;
             }
 
-            if (mCellValues[r, c] != 0)
-            {
+            if (mCellValues[r, c] > 0)
                 mCellButtons[r, c].Text = mCellValues[r, c].ToString();
-                
-                if(mCellValues[r, c] == -1) //click mined cell - game over!
-                {
-                    mEndGame = true;
-                    timerPlay.Stop();
-                    lbState.Text = "Game over!";
-                    for (int i = 0; i < mRowCount; i++)
-                    {
-                        for (int j = 0; j < mColCount; j++)
-                        {
-                            if (mCellButtons[i, j].Enabled == true)
-                                clickCellButton(mCellButtons[i, j], e);
-                        }
-                    }
-                }
-            }
+            else if(mCellValues[r, c] == -1)//click mined cell - game over!
+                endGame(e);
             else
             {
                 List<Point> neighborPoints = getNeighborPoints(r, c, true);
@@ -250,24 +244,15 @@ namespace Minesweeper
             if (!mEndGame && mCellValues[r, c] != -1)
             {
                 ++mUncoveredCellCnt;
-                if(mUncoveredCellCnt == mCellCount - mMineCount) //uncover every unmined cell - win game!
-                {
-                    mEndGame = true;
-                    timerPlay.Stop();
-                    lbState.Text = "Victory!";
-                    foreach (Point point in mMinedCells)
-                    {
-                        mCellButtons[point.X, point.Y].Enabled = false;
-                        mCellButtons[point.X, point.Y].BackColor = Color.Red;
-                    }
-                }
+                if (mUncoveredCellCnt == mCellCount - mMineCount) //uncover every unmined cell - win game!
+                    endGame(e, true);
             }
 
         }
 
-        private void cbMode_SelectedIndexChanged(object sender, EventArgs e)
+        private void modeCheckbox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch(cbMode.SelectedIndex)
+            switch(modeCheckbox.SelectedIndex)
             {
                 case 0: //9X9 -> 10 mines
                     {
@@ -295,10 +280,56 @@ namespace Minesweeper
             mCellCount = mRowCount * mColCount;
         }
 
-        private void timerPlay_Tick(object sender, EventArgs e)
+        private void playTimer_Tick(object sender, EventArgs e)
         {
-            tbTime.Text = (int.Parse(tbTime.Text) + 1).ToString();
-            tbTime.Refresh();
+            //timeTextbox.Text = (int.Parse(timeTextbox.Text) + 1).ToString();
+            //++mTimeCount; 
+            ++mSecondCount;
+            if(mSecondCount >= 60)
+            {
+                mSecondCount = 0;
+                ++mMinuteCount;
+                if(mMinuteCount >= 60)
+                {
+                    mMinuteCount = 0;
+                    ++mHourCount;
+                }
+            }
+            timeTextbox.Text = string.Format("{0:D2}:{1:D2}:{2:D2}", mHourCount, mMinuteCount, mSecondCount);
+            timeTextbox.Refresh();
+        }
+
+        private void endGame(EventArgs e, bool winGame = false)
+        {
+            mEndGame = true;
+            playTimer.Stop();
+            stateLabel.Text = (winGame == true) ? "Victory!" : "Game over!";
+            if(winGame == true)
+            {
+                foreach (Point point in mMinedCells)
+                {
+                    mCellButtons[point.X, point.Y].Enabled = false;
+                    mCellButtons[point.X, point.Y].BackColor = Color.Red;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < mRowCount; i++)
+                {
+                    for (int j = 0; j < mColCount; j++)
+                    {
+                        if (mCellButtons[i, j].Enabled == true)
+                            clickCellButton(mCellButtons[i, j], e);
+                        if(mCellValues[i, j] == -1)
+                        {
+                            mCellButtons[i, j].BackgroundImage = Resource1.mine;
+                            //Properties.Resources.ResourceManager.
+                            //mCellButtons[i, j].BackgroundImage = 
+                            mCellButtons[i, j].BackgroundImageLayout = ImageLayout.Stretch;
+                        }
+                    }
+                }
+            }
         }
     }
 }
