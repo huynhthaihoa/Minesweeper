@@ -80,7 +80,7 @@ namespace Minesweeper
             return neighborPoints;
         }
 
-        private List<Point> initializeMineList()
+        private void initializeMineList()
         {
             mMinedCells = new List<Point>();
             Random rd = new Random();
@@ -91,7 +91,6 @@ namespace Minesweeper
                 if (!mMinedCells.Contains(point))
                     mMinedCells.Add(point);
             }
-            return mMinedCells;
         }
 
         private void initializeCellValues()
