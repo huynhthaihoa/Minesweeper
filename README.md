@@ -1,9 +1,9 @@
 # Minesweeper
 C# clone of the classic Minesweeper
 
-*Last updated: 04/02/2022 - 09:30PM (KST)*
+*Last updated: 04/04/2022 - 13:00 (KST)*
 ## Installation
-- Build & run with Microsoft Visual Studio 2019 using .NET Framework 4.7.2 (no additional dependencies)
+- Build & run with Microsoft Visual Studio 2019 using .NET Framework 4.7.2 (no additional dependencies required)
 - Run the program directly at Demo/Minesweeper.exe
 ## Demo 
 ![<img src="./Demo/Victory.png" width="30" height="30" alt="Victory"/>](./Demo/Victory.png)
@@ -20,8 +20,8 @@ C# clone of the classic Minesweeper
   - Display a blank cell and all adjacent non-mined cells will automatically be uncovered 
 - Ensure the first clicked cell will never be a mined cell
 - Finish game:
-  - When the mined cell is clicked (all cells will be uncovered) -> "Game over!"
-  - When every unmined cell is uncovered (all mined cells will become red) -> "Victory!"
+  - When the mined cell is clicked, all cells will be uncovered, the clicked mined cell will show a red mine, whereas each of other mined cells will show a black mine -> "Game over!"
+  - When every unmined cell is uncovered, each mined cell will show a red flag -> "Victory!"
 - Add mined cell icon & program icon
 - Display timer on hh:mm:ss format
  ## To do
@@ -30,6 +30,6 @@ C# clone of the classic Minesweeper
  - Improve GUI (?)
  - Add high score table
  ## Credit
- Mine icon was downloaded from [pngwing](https://www.pngwing.com/en/free-png-cbukd)
-
+ - Mine icon was downloaded from [pngwing](https://www.pngwing.com/en/free-png-cbukd)
+ - Red flag icon was downloaded from [clipartmax](https://www.clipartmax.com/middle/m2i8i8d3H7N4N4A0_red-flag-icon-psd-red-flag-icon-transparent-background/)
 
