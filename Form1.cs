@@ -374,24 +374,24 @@ namespace Minesweeper
         private void modeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             mIsFlaggedMode = (modeComboBox.SelectedIndex == 1);
-            for (int i = 0; i < mRowCount; ++i)
-            {
-                for (int j = 0; j < mColCount; ++j)
-                {
-                    if (mCellButtons[i, j].Enabled == true)
-                    {
-                        if (mIsFlaggedMode == false)
-                            mCellButtons[i, j].BackgroundImage = null;
-                        //else
-                        //{
-                        //    Bitmap bmp = Resource1.flag;
-                        //    BitmapFilter.GaussianBlur(bmp, 4);
-                        //    mCellButtons[i, j].BackgroundImage = bmp;
-                        //    mCellButtons[i, j].BackgroundImageLayout = ImageLayout.Stretch;
-                        //}
-                    }
-                }
-            }
+            //for (int i = 0; i < mRowCount; ++i)
+            //{
+            //    for (int j = 0; j < mColCount; ++j)
+            //    {
+            //        if (mCellButtons[i, j].Enabled == true)
+            //        {
+            //            if (mIsFlaggedMode == false)
+            //                mCellButtons[i, j].BackgroundImage = null;
+            //            //else
+            //            //{
+            //            //    Bitmap bmp = Resource1.flag;
+            //            //    BitmapFilter.GaussianBlur(bmp, 4);
+            //            //    mCellButtons[i, j].BackgroundImage = bmp;
+            //            //    mCellButtons[i, j].BackgroundImageLayout = ImageLayout.Stretch;
+            //            //}
+            //        }
+            //    }
+            //}
         }
     }
 }

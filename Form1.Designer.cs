@@ -49,49 +49,49 @@ namespace Minesweeper
             this.cellPanel.ColumnCount = 2;
             this.cellPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.cellPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.cellPanel.Location = new System.Drawing.Point(11, 60);
+            this.cellPanel.Location = new System.Drawing.Point(13, 75);
             this.cellPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cellPanel.Name = "cellPanel";
             this.cellPanel.RowCount = 2;
             this.cellPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.cellPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.cellPanel.Size = new System.Drawing.Size(678, 480);
+            this.cellPanel.Size = new System.Drawing.Size(775, 600);
             this.cellPanel.TabIndex = 0;
             // 
             // lbTime
             // 
             this.lbTime.AutoSize = true;
             this.lbTime.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbTime.Location = new System.Drawing.Point(11, 20);
+            this.lbTime.Location = new System.Drawing.Point(13, 25);
             this.lbTime.Name = "lbTime";
-            this.lbTime.Size = new System.Drawing.Size(46, 16);
+            this.lbTime.Size = new System.Drawing.Size(54, 20);
             this.lbTime.TabIndex = 1;
             this.lbTime.Text = "Time";
             // 
             // timeTextbox
             // 
             this.timeTextbox.Enabled = false;
-            this.timeTextbox.Location = new System.Drawing.Point(73, 20);
+            this.timeTextbox.Location = new System.Drawing.Point(83, 25);
             this.timeTextbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.timeTextbox.Name = "timeTextbox";
-            this.timeTextbox.Size = new System.Drawing.Size(87, 21);
+            this.timeTextbox.Size = new System.Drawing.Size(99, 25);
             this.timeTextbox.TabIndex = 2;
             // 
             // lbStatus
             // 
             this.lbStatus.AutoSize = true;
-            this.lbStatus.Location = new System.Drawing.Point(339, 23);
+            this.lbStatus.Location = new System.Drawing.Point(387, 29);
             this.lbStatus.Name = "lbStatus";
-            this.lbStatus.Size = new System.Drawing.Size(0, 12);
+            this.lbStatus.Size = new System.Drawing.Size(0, 15);
             this.lbStatus.TabIndex = 5;
             // 
             // lbLevel
             // 
             this.lbLevel.AutoSize = true;
             this.lbLevel.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbLevel.Location = new System.Drawing.Point(11, 560);
+            this.lbLevel.Location = new System.Drawing.Point(13, 700);
             this.lbLevel.Name = "lbLevel";
-            this.lbLevel.Size = new System.Drawing.Size(51, 16);
+            this.lbLevel.Size = new System.Drawing.Size(60, 20);
             this.lbLevel.TabIndex = 6;
             this.lbLevel.Text = "Level";
             // 
@@ -102,19 +102,19 @@ namespace Minesweeper
             "9x9",
             "16x16",
             "30x16"});
-            this.levelCombobox.Location = new System.Drawing.Point(70, 560);
+            this.levelCombobox.Location = new System.Drawing.Point(80, 700);
             this.levelCombobox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.levelCombobox.Name = "levelCombobox";
-            this.levelCombobox.Size = new System.Drawing.Size(132, 20);
+            this.levelCombobox.Size = new System.Drawing.Size(150, 23);
             this.levelCombobox.TabIndex = 7;
             // 
             // btnNew
             // 
             this.btnNew.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnNew.Location = new System.Drawing.Point(303, 555);
+            this.btnNew.Location = new System.Drawing.Point(346, 694);
             this.btnNew.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(101, 26);
+            this.btnNew.Size = new System.Drawing.Size(115, 32);
             this.btnNew.TabIndex = 8;
             this.btnNew.Text = "New game";
             this.btnNew.UseVisualStyleBackColor = true;
@@ -124,9 +124,9 @@ namespace Minesweeper
             // 
             this.stateLabel.AutoSize = true;
             this.stateLabel.Font = new System.Drawing.Font("Goudy Stout", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stateLabel.Location = new System.Drawing.Point(451, 14);
+            this.stateLabel.Location = new System.Drawing.Point(515, 18);
             this.stateLabel.Name = "stateLabel";
-            this.stateLabel.Size = new System.Drawing.Size(0, 26);
+            this.stateLabel.Size = new System.Drawing.Size(0, 32);
             this.stateLabel.TabIndex = 9;
             // 
             // playTimer
@@ -138,9 +138,9 @@ namespace Minesweeper
             // 
             this.lbMode.AutoSize = true;
             this.lbMode.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 12F, System.Drawing.FontStyle.Bold);
-            this.lbMode.Location = new System.Drawing.Point(454, 560);
+            this.lbMode.Location = new System.Drawing.Point(519, 700);
             this.lbMode.Name = "lbMode";
-            this.lbMode.Size = new System.Drawing.Size(67, 23);
+            this.lbMode.Size = new System.Drawing.Size(82, 29);
             this.lbMode.TabIndex = 10;
             this.lbMode.Text = "Mode";
             // 
@@ -150,19 +150,20 @@ namespace Minesweeper
             this.modeComboBox.Items.AddRange(new object[] {
             "Normal mode",
             "Flagged mode"});
-            this.modeComboBox.Location = new System.Drawing.Point(530, 560);
+            this.modeComboBox.Location = new System.Drawing.Point(606, 700);
+            this.modeComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.modeComboBox.Name = "modeComboBox";
-            this.modeComboBox.Size = new System.Drawing.Size(132, 20);
+            this.modeComboBox.Size = new System.Drawing.Size(150, 23);
             this.modeComboBox.TabIndex = 11;
             this.modeComboBox.SelectedIndexChanged += new System.EventHandler(this.modeComboBox_SelectedIndexChanged);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(700, 597);
+            this.ClientSize = new System.Drawing.Size(800, 746);
             this.Controls.Add(this.modeComboBox);
             this.Controls.Add(this.lbMode);
             this.Controls.Add(this.stateLabel);
