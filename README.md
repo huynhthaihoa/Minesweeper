@@ -1,7 +1,7 @@
 # Minesweeper
 C# clone of the classic Minesweeper
 
-*Last updated: 04/04/2022 - 23:25 (KST)*
+*Last updated: 04/04/2022 - 23:30 (KST)*
 ## How to play
 There are 2 ways to run the game:
 - Build & run with Microsoft Visual Studio 2019 using .NET Framework 4.7.2 (no additional dependencies required)
@@ -38,5 +38,5 @@ There are 2 ways to run the game:
  ## Credit
  - Mine icon was downloaded from [pngwing](https://www.pngwing.com/en/free-png-cbukd)
  - Red flag icon was downloaded from [clipartmax](https://www.clipartmax.com/middle/m2i8i8d3H7N4N4A0_red-flag-icon-psd-red-flag-icon-transparent-background/)
- - Bitmap blurring solution from [ua.Skywalker](https://stackoverflow.com/a/3599954/5445721) (has not been used in current version)
+ - Blurring-related classes (Util.cs) is based on [ua.Skywalker solution](https://stackoverflow.com/a/3599954/5445721) (not used yet in the current version)
 
