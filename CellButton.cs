@@ -32,8 +32,15 @@ namespace Minesweeper
             mRow = row;
             mCol = col;
             Font = new Font("Arial", 12, FontStyle.Bold);
-            //mVal = 0;
             Dock = DockStyle.Fill;
+            FlatStyle = FlatStyle.Flat;
+            EnabledChanged += CellButton_EnabledChanged;
+            CellButton_EnabledChanged(null, null);
+        }
+
+        private void CellButton_EnabledChanged(object sender, EventArgs e)
+        {
+            BackColor = (Enabled) ? Color.LightGray : Color.DarkGray;
         }
 
         protected override void OnPaint(PaintEventArgs pe)

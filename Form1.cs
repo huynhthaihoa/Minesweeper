@@ -139,7 +139,7 @@ namespace Minesweeper
             }
             for (int i = 0; i < mRowCount; i++)
             {
-                cellPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100 / mColCount));
+                cellPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100 / mRowCount));
             }
 
             mCellButtons = new CellButton[mRowCount, mColCount];
