@@ -98,6 +98,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="mine_clicked.png" />
+    <None Include="flag.png" />
     <Content Include="mine.ico" />
     <None Include="mine.png" />
   </ItemGroup>

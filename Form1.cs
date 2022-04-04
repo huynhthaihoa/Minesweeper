@@ -230,13 +230,13 @@ namespace Minesweeper
             if (mCellValues[r, c] > 0)
                 mCellButtons[r, c].Text = mCellValues[r, c].ToString();
             else if(mCellValues[r, c] == -1)//click mined cell - game over!
-                endGame(e);
+                endGame(e, r, c);
             else
             {
                 List<Point> neighborPoints = getNeighborPoints(r, c, true);
                 foreach (Point point in neighborPoints)
                 {
-                    if (mCellValues[point.X, point.Y] != -1 && mCellButtons[point.X, point.Y].Enabled == true)
+                    if (mCellButtons[point.X, point.Y].Enabled == true && mCellValues[point.X, point.Y] != -1)
                         clickCellButton(mCellButtons[point.X, point.Y], e);
                 }
             }
@@ -245,7 +245,7 @@ namespace Minesweeper
             {
                 ++mUncoveredCellCnt;
                 if (mUncoveredCellCnt == mCellCount - mMineCount) //uncover every unmined cell - win game!
-                    endGame(e, true);
+                    endGame(e, r, c, true);
             }
 
         }
@@ -299,7 +299,7 @@ namespace Minesweeper
             timeTextbox.Refresh();
         }
 
-        private void endGame(EventArgs e, bool winGame = false)
+        private void endGame(EventArgs e, int row, int col, bool winGame = false)
         {
             mEndGame = true;
             playTimer.Stop();
@@ -309,7 +309,8 @@ namespace Minesweeper
                 foreach (Point point in mMinedCells)
                 {
                     mCellButtons[point.X, point.Y].Enabled = false;
-                    mCellButtons[point.X, point.Y].BackColor = Color.Red;
+                    mCellButtons[point.X, point.Y].BackgroundImage = Resource1.flag;
+                    mCellButtons[point.X, point.Y].BackgroundImageLayout = ImageLayout.Stretch;
                 }
             }
             else
@@ -322,9 +323,7 @@ namespace Minesweeper
                             clickCellButton(mCellButtons[i, j], e);
                         if(mCellValues[i, j] == -1)
                         {
-                            mCellButtons[i, j].BackgroundImage = Resource1.mine;
-                            //Properties.Resources.ResourceManager.
-                            //mCellButtons[i, j].BackgroundImage = 
+                            mCellButtons[i, j].BackgroundImage = (i == row && j == col)? Resource1.mine_clicked : Resource1.mine;
                             mCellButtons[i, j].BackgroundImageLayout = ImageLayout.Stretch;
                         }
                     }
