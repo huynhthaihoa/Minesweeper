@@ -98,6 +98,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\mine_clicked.png" />
+    <None Include="Resources\mine.png" />
+    <None Include="Resources\flag.png" />
     <None Include="mine_clicked.png" />
     <None Include="flag.png" />
     <Content Include="mine.ico" />
