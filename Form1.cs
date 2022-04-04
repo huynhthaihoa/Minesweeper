@@ -185,6 +185,7 @@ namespace Minesweeper
 
         private void clickNewButton(object sender, EventArgs e)
         {
+            intializeSize();
             initializeCellValues();
             initializeCellButtons();
             stateLabel.Text = "";
@@ -249,9 +250,39 @@ namespace Minesweeper
 
         }
 
-        private void modeCheckbox_SelectedIndexChanged(object sender, EventArgs e)
+        //private void modeCheckbox_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    switch(modeCheckbox.SelectedIndex)
+        //    {
+        //        case 0: //9X9 -> 10 mines
+        //            {
+        //                mRowCount = 9;
+        //                mColCount = 9;
+        //                mMineCount = 10;
+        //                break;
+        //            }
+        //        case 1: //16X16 -> 40 mines
+        //            {
+        //                mRowCount = 16;
+        //                mColCount = 16;
+        //                mMineCount = 40;
+        //                break;
+        //            }
+        //        case 2: //16X30 -> 99 mines
+        //            {
+        //                mRowCount = 16;
+        //                mColCount = 30;
+        //                mMineCount = 99;
+        //                break;
+        //            }
+        //    }
+
+        //    mCellCount = mRowCount * mColCount;
+        //}
+
+        private void intializeSize()
         {
-            switch(modeCheckbox.SelectedIndex)
+            switch (modeCheckbox.SelectedIndex)
             {
                 case 0: //9X9 -> 10 mines
                     {
@@ -278,6 +309,7 @@ namespace Minesweeper
 
             mCellCount = mRowCount * mColCount;
         }
+
 
         private void playTimer_Tick(object sender, EventArgs e)
         {

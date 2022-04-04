@@ -108,7 +108,7 @@ namespace Minesweeper
             this.modeCheckbox.Name = "modeCheckbox";
             this.modeCheckbox.Size = new System.Drawing.Size(241, 32);
             this.modeCheckbox.TabIndex = 7;
-            this.modeCheckbox.SelectedIndexChanged += new System.EventHandler(this.modeCheckbox_SelectedIndexChanged);
+            //this.modeCheckbox.SelectedIndexChanged += new System.EventHandler(this.modeCheckbox_SelectedIndexChanged);
             // 
             // btnNew
             // 
