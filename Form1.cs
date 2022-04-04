@@ -42,11 +42,14 @@ namespace Minesweeper
         int mMinuteCount;
         int mSecondCount;
 
+        //mode (true is flagged mode)
+        bool mIsFlaggedMode;
 
         public Form1()
         {
             InitializeComponent();
-            modeCheckbox.SelectedIndex = 0;
+            levelCombobox.SelectedIndex = 0;
+            modeComboBox.SelectedIndex = 0;
             clickNewButton(null, null);
         }
         private List<Point> getNeighborPoints(int row, int col, bool checkEnable = false)
@@ -204,6 +207,12 @@ namespace Minesweeper
         {
             int r = ((CellButton)sender).Row;
             int c = ((CellButton)sender).Col;
+            if(mIsFlaggedMode)
+            {
+                mCellButtons[r, c].BackgroundImage = Resource1.flag;
+                mCellButtons[r, c].BackgroundImageLayout = ImageLayout.Stretch;
+                return;
+            }
             mCellButtons[r, c].Enabled = false;
             if (mFlag == false)
             {
@@ -250,9 +259,9 @@ namespace Minesweeper
 
         }
 
-        //private void modeCheckbox_SelectedIndexChanged(object sender, EventArgs e)
+        //private void levelCombobox_SelectedIndexChanged(object sender, EventArgs e)
         //{
-        //    switch(modeCheckbox.SelectedIndex)
+        //    switch(levelCombobox.SelectedIndex)
         //    {
         //        case 0: //9X9 -> 10 mines
         //            {
@@ -282,7 +291,7 @@ namespace Minesweeper
 
         private void intializeSize()
         {
-            switch (modeCheckbox.SelectedIndex)
+            switch (levelCombobox.SelectedIndex)
             {
                 case 0: //9X9 -> 10 mines
                     {
@@ -357,6 +366,29 @@ namespace Minesweeper
                             mCellButtons[i, j].BackgroundImage = (i == row && j == col)? Resource1.mine_clicked : Resource1.mine;
                             mCellButtons[i, j].BackgroundImageLayout = ImageLayout.Stretch;
                         }
+                    }
+                }
+            }
+        }
+
+        private void modeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            mIsFlaggedMode = (modeComboBox.SelectedIndex == 1);
+            for (int i = 0; i < mRowCount; ++i)
+            {
+                for (int j = 0; j < mColCount; ++j)
+                {
+                    if (mCellButtons[i, j].Enabled == true)
+                    {
+                        if (mIsFlaggedMode == false)
+                            mCellButtons[i, j].BackgroundImage = null;
+                        //else
+                        //{
+                        //    Bitmap bmp = Resource1.flag;
+                        //    BitmapFilter.GaussianBlur(bmp, 4);
+                        //    mCellButtons[i, j].BackgroundImage = bmp;
+                        //    mCellButtons[i, j].BackgroundImageLayout = ImageLayout.Stretch;
+                        //}
                     }
                 }
             }
