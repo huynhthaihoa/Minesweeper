@@ -3,8 +3,9 @@ C# clone of the classic Minesweeper
 
 *Last updated: 04/04/2022 - 14:45 (KST)*
 ## Installation
+There are 2 ways to run the game:
 - Build & run with Microsoft Visual Studio 2019 using .NET Framework 4.7.2 (no additional dependencies required)
-- Run the program directly at Resources/Minesweeper.exe
+- Run the game directly at Resources/Minesweeper.exe
 ## Demo 
 ![<img src="./Resources/Victory.png" width="30" height="30" alt="Victory"/>](./Resources/Victory.png)
 
