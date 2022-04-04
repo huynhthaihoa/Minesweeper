@@ -1,7 +1,7 @@
 # Minesweeper
 C# clone of the classic Minesweeper
 
-*Last updated: 04/04/2022 - 14:47 (KST)*
+*Last updated: 04/04/2022 - 23:25 (KST)*
 ## How to play
 There are 2 ways to run the game:
 - Build & run with Microsoft Visual Studio 2019 using .NET Framework 4.7.2 (no additional dependencies required)
@@ -10,12 +10,17 @@ There are 2 ways to run the game:
 ![<img src="./Resources/Victory.png" width="30" height="30" alt="Victory"/>](./Resources/Victory.png)
 
 ![<img src="./Resources/GameOver.png" width="30" height="30" alt="Game over"/>](./Resources/GameOver.png)
+
+![<img src="./Resources/GameOver.png" width="30" height="30" alt="Game over"/>](./Resources/flagged_mode.png)
 ## Done
-- Generate new game with 3 modes:
+- Generate new game with 3 levels (select using the combo box at bottom left):
   - 9x9 field with 10 mines (Easy) - default mode
   - 16x16 fields with 40 mines (Medium)
   - 16x30 fields with 99 mines (Hard)
-- Handle event when click on one cell:
+- Support 2 modes (select using the combo box at bottom right):
+  - Normal mode: click to uncover cell
+  - Flagged mode: click to put marking flag on cell
+- Handle event when click on one cell (normal mode):
   - Display mine if the clicked cell is a mined cell and every cell will automatically be uncovered
   - Display a positive number which indicates the number of mines diagonally and/or adjacent to it
   - Display a blank cell and all adjacent non-mined cells will automatically be uncovered 
