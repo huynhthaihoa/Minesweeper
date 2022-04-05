@@ -61,10 +61,10 @@ namespace Minesweeper
             // lbTime
             // 
             this.lbTime.AutoSize = true;
-            this.lbTime.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbTime.Location = new System.Drawing.Point(13, 25);
+            this.lbTime.Font = new System.Drawing.Font("Gill Sans MT", 12F);
+            this.lbTime.Location = new System.Drawing.Point(27, 23);
             this.lbTime.Name = "lbTime";
-            this.lbTime.Size = new System.Drawing.Size(54, 20);
+            this.lbTime.Size = new System.Drawing.Size(54, 29);
             this.lbTime.TabIndex = 1;
             this.lbTime.Text = "Time";
             // 
@@ -88,10 +88,10 @@ namespace Minesweeper
             // lbLevel
             // 
             this.lbLevel.AutoSize = true;
-            this.lbLevel.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbLevel.Location = new System.Drawing.Point(13, 700);
+            this.lbLevel.Font = new System.Drawing.Font("Gill Sans MT", 12F);
+            this.lbLevel.Location = new System.Drawing.Point(22, 697);
             this.lbLevel.Name = "lbLevel";
-            this.lbLevel.Size = new System.Drawing.Size(60, 20);
+            this.lbLevel.Size = new System.Drawing.Size(56, 29);
             this.lbLevel.TabIndex = 6;
             this.lbLevel.Text = "Level";
             // 
@@ -137,10 +137,10 @@ namespace Minesweeper
             // lbMode
             // 
             this.lbMode.AutoSize = true;
-            this.lbMode.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 12F, System.Drawing.FontStyle.Bold);
-            this.lbMode.Location = new System.Drawing.Point(519, 700);
+            this.lbMode.Font = new System.Drawing.Font("Gill Sans MT", 12F);
+            this.lbMode.Location = new System.Drawing.Point(544, 698);
             this.lbMode.Name = "lbMode";
-            this.lbMode.Size = new System.Drawing.Size(82, 29);
+            this.lbMode.Size = new System.Drawing.Size(60, 29);
             this.lbMode.TabIndex = 10;
             this.lbMode.Text = "Mode";
             // 
