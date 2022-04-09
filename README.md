@@ -7,11 +7,11 @@ There are 2 ways to run the game:
 - Build & run with Microsoft Visual Studio 2019 using .NET Framework 4.7.2 (no additional dependencies required)
 - Run the execution file directly which is located at Resources/Minesweeper.exe
 ## Demo 
-![<img src="./Resources/Victory.png" width="30" height="30" alt="Victory"/>](./Resources/Victory.png)
+![<img src="./Resources/Victory.png" width="10" height="10" alt="Victory"/>](./Resources/Victory.png)
 
-![<img src="./Resources/GameOver.png" width="30" height="30" alt="Game over"/>](./Resources/GameOver.png)
+![<img src="./Resources/GameOver.png" width="10" height="10" alt="Game over"/>](./Resources/GameOver.png)
 
-![<img src="./Resources/GameOver.png" width="30" height="30" alt="Game over"/>](./Resources/flagged_mode.png)
+![<img src="./Resources/GameOver.png" width="10" height="10" alt="Game over"/>](./Resources/flagged_mode.png)
 ## Done
 - User can click the emoticon button on the middle top to refresh game and see the game status (in game - neutral emoticon, game over - sad emoticon, game win - smile emoticon)
 - Generate new game with 3 levels (select using the combo box at bottom left):
