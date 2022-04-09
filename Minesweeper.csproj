@@ -101,6 +101,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\smile.png" />
+    <None Include="Resources\sad.png" />
+    <None Include="Resources\neutral.png" />
     <None Include="Resources\mine_clicked.png" />
     <None Include="Resources\mine.png" />
     <None Include="Resources\flag.png" />

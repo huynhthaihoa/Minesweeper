@@ -29,7 +29,7 @@ namespace Minesweeper
         int[,] mCellValues;
 
         //check if any cell is already clicked
-        bool mFlag;
+        bool mFirstClick;
 
         //check if game is finished
         bool mEndGame;
@@ -50,6 +50,7 @@ namespace Minesweeper
             InitializeComponent();
             levelCombobox.SelectedIndex = 0;
             modeComboBox.SelectedIndex = 0;
+            btnNew.BackgroundImageLayout = ImageLayout.Stretch;
             clickNewButton(null, null);
         }
         private List<Point> getNeighborPoints(int row, int col, bool checkEnable = false)
@@ -191,8 +192,10 @@ namespace Minesweeper
             intializeSize();
             initializeCellValues();
             initializeCellButtons();
-            stateLabel.Text = "";
-            mFlag = false;
+            //stateLabel.Text = "";
+            btnNew.BackgroundImage = Resource1.neutral;
+            btnNew.Refresh();
+            mFirstClick = false;
             mUncoveredCellCnt = 0;
             mEndGame = false;
             mHourCount = 0;
@@ -209,12 +212,20 @@ namespace Minesweeper
             int c = ((CellButton)sender).Col;
             if(mIsFlaggedMode)
             {
-                mCellButtons[r, c].BackgroundImage = Resource1.flag;
-                mCellButtons[r, c].BackgroundImageLayout = ImageLayout.Stretch;
+                if(mCellButtons[r, c].BackgroundImage == null)
+                    mCellButtons[r, c].BackgroundImage = Resource1.flag;
+                else
+                    mCellButtons[r, c].BackgroundImage = null;
+                return;
+            }
+            if (mCellButtons[r, c].BackgroundImage != null)
+            {
+                mCellButtons[r, c].BackgroundImage = null;
+                mCellButtons[r, c].Text = "?";
                 return;
             }
             mCellButtons[r, c].Enabled = false;
-            if (mFlag == false)
+            if (mFirstClick == false)
             {
                 if (mCellValues[r, c] == -1) //choose the mined cell at the first click
                 {
@@ -233,7 +244,7 @@ namespace Minesweeper
                         }
                     }
                 }
-                mFlag = true;
+                mFirstClick = true;
             }
 
             if (mCellValues[r, c] > 0)
@@ -242,6 +253,7 @@ namespace Minesweeper
                 endGame(e, r, c);
             else
             {
+                mCellButtons[r, c].Text = null;
                 List<Point> neighborPoints = getNeighborPoints(r, c, true);
                 foreach (Point point in neighborPoints)
                 {
@@ -343,14 +355,15 @@ namespace Minesweeper
         {
             mEndGame = true;
             playTimer.Stop();
-            stateLabel.Text = (winGame == true) ? "Victory!" : "Game over!";
-            if(winGame == true)
+            btnNew.BackgroundImage = (winGame == true) ? Resource1.smile : Resource1.sad;
+            btnNew.Refresh();
+            //stateLabel.Text = (winGame == true) ? "Victory!" : "Game over!";
+            if (winGame == true)
             {
                 foreach (Point point in mMinedCells)
                 {
                     mCellButtons[point.X, point.Y].Enabled = false;
                     mCellButtons[point.X, point.Y].BackgroundImage = Resource1.flag;
-                    mCellButtons[point.X, point.Y].BackgroundImageLayout = ImageLayout.Stretch;
                 }
             }
             else
@@ -362,10 +375,7 @@ namespace Minesweeper
                         if (mCellButtons[i, j].Enabled == true)
                             clickCellButton(mCellButtons[i, j], e);
                         if(mCellValues[i, j] == -1)
-                        {
                             mCellButtons[i, j].BackgroundImage = (i == row && j == col)? Resource1.mine_clicked : Resource1.mine;
-                            mCellButtons[i, j].BackgroundImageLayout = ImageLayout.Stretch;
-                        }
                     }
                 }
             }

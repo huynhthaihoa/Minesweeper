@@ -37,11 +37,11 @@ namespace Minesweeper
             this.lbStatus = new System.Windows.Forms.Label();
             this.lbLevel = new System.Windows.Forms.Label();
             this.levelCombobox = new System.Windows.Forms.ComboBox();
-            this.btnNew = new System.Windows.Forms.Button();
             this.stateLabel = new System.Windows.Forms.Label();
             this.playTimer = new System.Windows.Forms.Timer(this.components);
             this.lbMode = new System.Windows.Forms.Label();
             this.modeComboBox = new System.Windows.Forms.ComboBox();
+            this.btnNew = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cellPanel
@@ -108,18 +108,6 @@ namespace Minesweeper
             this.levelCombobox.Size = new System.Drawing.Size(150, 23);
             this.levelCombobox.TabIndex = 7;
             // 
-            // btnNew
-            // 
-            this.btnNew.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnNew.Location = new System.Drawing.Point(346, 694);
-            this.btnNew.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(115, 32);
-            this.btnNew.TabIndex = 8;
-            this.btnNew.Text = "New game";
-            this.btnNew.UseVisualStyleBackColor = true;
-            this.btnNew.Click += new System.EventHandler(this.clickNewButton);
-            // 
             // stateLabel
             // 
             this.stateLabel.AutoSize = true;
@@ -157,6 +145,17 @@ namespace Minesweeper
             this.modeComboBox.TabIndex = 11;
             this.modeComboBox.SelectedIndexChanged += new System.EventHandler(this.modeComboBox_SelectedIndexChanged);
             // 
+            // btnNew
+            // 
+            this.btnNew.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnNew.Location = new System.Drawing.Point(374, 13);
+            this.btnNew.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(50, 50);
+            this.btnNew.TabIndex = 12;
+            this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.Click += new System.EventHandler(this.clickNewButton);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -164,10 +163,10 @@ namespace Minesweeper
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(800, 746);
+            this.Controls.Add(this.btnNew);
             this.Controls.Add(this.modeComboBox);
             this.Controls.Add(this.lbMode);
             this.Controls.Add(this.stateLabel);
-            this.Controls.Add(this.btnNew);
             this.Controls.Add(this.levelCombobox);
             this.Controls.Add(this.lbLevel);
             this.Controls.Add(this.lbStatus);
@@ -192,11 +191,11 @@ namespace Minesweeper
         private System.Windows.Forms.Label lbStatus;
         private System.Windows.Forms.Label lbLevel;
         private System.Windows.Forms.ComboBox levelCombobox;
-        private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.Label stateLabel;
         private System.Windows.Forms.Timer playTimer;
         private System.Windows.Forms.Label lbMode;
         private System.Windows.Forms.ComboBox modeComboBox;
+        private System.Windows.Forms.Button btnNew;
     }
 }
 

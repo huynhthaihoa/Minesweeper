@@ -34,6 +34,7 @@ namespace Minesweeper
             Font = new Font("Arial", 12, FontStyle.Bold);
             Dock = DockStyle.Fill;
             FlatStyle = FlatStyle.Flat;
+            BackgroundImageLayout = ImageLayout.Stretch;
             EnabledChanged += CellButton_EnabledChanged;
             CellButton_EnabledChanged(null, null);
         }
